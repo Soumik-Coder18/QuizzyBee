@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuizzyBee | Smart Learning Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <!-- Animated Background -->
+  <div class="animated-bg">
+    <div class="floating-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+      <div class="shape shape-4"></div>
+    </div>
+  </div>
+
+  <!-- Loading Screen -->
+  <div id="loadingScreen" class="loading-screen">
+    <div class="loading-content">
+      <div class="bee-loader">
+        <div class="bee">
+          <div class="bee-body">
+            <div class="wing wing-left"></div>
+            <div class="wing wing-right"></div>
+            <div class="stripe"></div>
+          </div>
+        </div>
+      </div>
+      <h2>Preparing your quiz experience...</h2>
+      <div class="loading-progress">
+        <div class="progress-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <header class="app-header">
+    <div class="container header-inner">
+      <div class="logo">
+        <div class="logo-icon">
+          <i class="fas fa-bee"></i>
+        </div>
+        <h1 class="app-title">QuizzyBee</h1>
+      </div>
+      
+      <nav aria-label="Primary" class="header-actions">
+        <button id="themeToggle" class="btn icon-btn" type="button" aria-label="Toggle theme">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button id="resumeBtn" class="btn secondary with-icon" type="button" aria-describedby="resumeHelp">
+          <i class="fas fa-play-circle"></i>
+          Resume
+        </button>
+        <span id="resumeHelp" class="sr-only">Resume your last saved session from this browser</span>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container" tabindex="-1">
+    <!-- Welcome Screen -->
+    <section id="welcome" class="card welcome-screen">
+      <div class="welcome-content">
+        <div class="welcome-icon">
+          <i class="fas fa-brain"></i>
+        </div>
+        <h1>Welcome to QuizzyBee</h1>
+        <p class="welcome-subtitle">Transform your knowledge with our intelligent quiz platform</p>
+        
+        <div class="feature-grid">
+          <div class="feature-card">
+            <i class="fas fa-bolt"></i>
+            <h3>Quick Sessions</h3>
+            <p>1-50 questions with smart timing</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-database"></i>
+            <h3>Massive Database</h3>
+            <p>Thousands of questions across categories</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-chart-line"></i>
+            <h3>Progress Tracking</h3>
+            <p>Detailed analytics and insights</p>
+          </div>
+        </div>
+
+        <button id="getStartedBtn" class="btn primary large with-icon">
+          Get Started
+          <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- Settings Screen -->
+    <section id="settings" class="card settings hidden">
+      <div class="settings-header">
+        <button id="backToWelcome" class="btn icon-btn back-btn">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <h2>Customize Your Quiz</h2>
+        <p>Tailor the experience to your learning style</p>
+      </div>
+
+      <form id="settingsForm">
+        <div class="settings-grid">
+          <div class="setting-group">
+            <h3><i class="fas fa-gamepad"></i> Quiz Mode</h3>
+            <div class="mode-selector">
+              <label class="mode-card">
+                <input type="radio" name="mode" value="practice" checked>
+                <div class="card-content">
+                  <i class="fas fa-graduation-cap"></i>
+                  <h4>Practice</h4>
+                  <p>Instant feedback with explanations</p>
+                  <div class="mode-badge">Recommended</div>
+                </div>
+              </label>
+              <label class="mode-card">
+                <input type="radio" name="mode" value="test">
+                <div class="card-content">
+                  <i class="fas fa-clipboard-check"></i>
+                  <h4>Test</h4>
+                  <p>Timed assessment with final results</p>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="setting-group">
+            <h3><i class="fas fa-sliders-h"></i> Configuration</h3>
+            <div class="config-grid">
+              <div class="config-item">
+                <label for="timePerQuestion">
+                  <i class="fas fa-clock"></i>
+                  Time per Question
+                </label>
+                <div class="slider-container">
+                  <input type="range" id="timePerQuestion" min="5" max="120" value="30" class="slider">
+                  <span id="timeValue" class="slider-value">30s</span>
+                </div>
+              </div>
+
+              <div class="config-item">
+                <label for="numQuestions">
+                  <i class="fas fa-list-ol"></i>
+                  Number of Questions
+                </label>
+                <div class="number-input">
+                  <button type="button" class="number-btn minus" aria-label="Decrease">-</button>
+                  <input type="number" id="numQuestions" min="1" max="50" value="10" inputmode="numeric">
+                  <button type="button" class="number-btn plus" aria-label="Increase">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="setting-group">
+            <h3><i class="fas fa-random"></i> Options</h3>
+            <div class="toggle-grid">
+              <label class="toggle-item">
+                <input type="checkbox" id="shuffleQuestions" checked>
+                <span class="toggle-slider"></span>
+                <span class="toggle-label">
+                  <i class="fas fa-random"></i>
+                  Shuffle Questions
+                </span>
+              </label>
+              <label class="toggle-item">
+                <input type="checkbox" id="shuffleChoices" checked>
+                <span class="toggle-slider"></span>
+                <span class="toggle-label">
+                  <i class="fas fa-retweet"></i>
+                  Shuffle Choices
+                </span>
+              </label>
+              <label class="toggle-item">
+                <input type="checkbox" id="soundEnabled">
+                <span class="toggle-slider"></span>
+                <span class="toggle-label">
+                  <i class="fas fa-volume-up"></i>
+                  Sound Feedback
+                </span>
+              </label>
+              <label class="toggle-item">
+                <input type="checkbox" id="highContrast">
+                <span class="toggle-slider"></span>
+                <span class="toggle-label">
+                  <i class="fas fa-eye"></i>
+                  High Contrast
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <div class="setting-group">
+            <h3><i class="fas fa-database"></i> Question Source</h3>
+            <div class="source-selector">
+              <label class="source-card">
+                <input type="radio" name="source" value="opentdb" checked>
+                <div class="card-content">
+                  <i class="fas fa-globe"></i>
+                  <h4>Open Trivia DB</h4>
+                  <p>Massive online database</p>
+                  <div class="source-fields">
+                    <div class="grid two">
+                      <label>
+                        Category ID
+                        <input type="number" id="otdbCategory" placeholder="Any category" inputmode="numeric">
+                      </label>
+                      <label>
+                        Difficulty
+                        <select id="otdbDifficulty">
+                          <option value="">Any</option>
+                          <option value="easy">Easy</option>
+                          <option value="medium">Medium</option>
+                          <option value="hard">Hard</option>
+                        </select>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </label>
+              <label class="source-card">
+                <input type="radio" name="source" value="local">
+                <div class="card-content">
+                  <i class="fas fa-file-alt"></i>
+                  <h4>Local Questions</h4>
+                  <p>Use your custom questions</p>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="startBtn" class="btn primary large with-icon" type="submit">
+            Start Quiz
+            <i class="fas fa-rocket"></i>
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Quiz Screen -->
+    <section id="quiz" class="quiz-section hidden" aria-labelledby="quizTitle" aria-live="polite">
+      <div class="quiz-header">
+        <div class="quiz-info">
+          <button id="quizMenuBtn" class="btn icon-btn" aria-label="Quiz menu">
+            <i class="fas fa-ellipsis-v"></i>
+          </button>
+          <div class="quiz-meta">
+            <h2 id="quizTitle">Knowledge Challenge</h2>
+            <div class="quiz-stats">
+              <span class="stat">
+                <i class="fas fa-list"></i>
+                <span id="progressCount">Question 0/0</span>
+              </span>
+              <span class="stat">
+                <i class="fas fa-bolt"></i>
+                <span id="modeBadge">Practice</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="progress-wrap" aria-label="Progress">
+          <div class="progress-bg"></div>
+          <div id="progressBar" class="progress-bar" role="progressbar" 
+               aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="progress-glow"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-content">
+        <div class="question-palette" id="questionPalette" aria-label="Question palette"></div>
+        <div class="timer-container">
+          <div class="timer" aria-live="polite">
+            <div class="timer-ring">
+              <svg class="timer-svg" viewBox="0 0 36 36" aria-hidden="true">
+                <path class="timer-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                <path id="timerPath" class="timer-path" stroke-dasharray="0, 100" 
+                      d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+              </svg>
+              <div class="timer-content">
+                <span id="timeLeft" class="time-left" aria-live="polite">30</span>
+                <small>seconds</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <article class="question-card" aria-labelledby="questionText">
+          <div class="question-header">
+            <div id="categoryBadge" class="badge">
+              <i class="fas fa-tag"></i>
+              <span class="badge-text">General Knowledge</span>
+            </div>
+            <div class="difficulty-badge" id="difficultyBadge">
+              <i class="fas fa-star"></i>
+              Medium
+            </div>
+          </div>
+          
+          <h3 id="questionText" class="question-text">Loading question...</h3>
+          
+          <div class="choices-grid" id="choicesContainer">
+            <ul id="choicesList" class="choices" role="listbox" aria-label="Answer choices"></ul>
+          </div>
+        </article>
+
+        <div class="quiz-actions">
+          <button id="prevBtn" class="btn secondary with-icon" type="button">
+            <i class="fas fa-arrow-left"></i>
+            Previous
+          </button>
+          <div class="action-group">
+            <button id="markReviewBtn" class="btn secondary with-icon" type="button" aria-pressed="false">
+              <i class="fas fa-bookmark"></i>
+              Mark for Review
+            </button>
+            <button id="skipBtn" class="btn secondary with-icon" type="button">
+              <i class="fas fa-forward"></i>
+              Skip
+            </button>
+            <button id="nextBtn" class="btn primary with-icon" type="button">
+              Next
+              <i class="fas fa-arrow-right"></i>
+            </button>
+            <button id="submitBtn" class="btn accent with-icon" type="button">
+              Submit
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
+          <button id="endBtn" class="btn danger with-icon" type="button">
+            <i class="fas fa-flag-checkered"></i>
+            End Quiz
+          </button>
+        </div>
+      </div>
+
+      <div id="liveRegion" class="sr-only" aria-live="assertive" aria-atomic="true"></div>
+    </section>
+
+    <!-- Summary Screen -->
+    <section id="summary" class="card summary hidden" aria-labelledby="summaryTitle">
+      <div class="summary-header">
+        <div class="result-icon">
+          <i class="fas fa-trophy"></i>
+        </div>
+        <h2 id="summaryTitle">Quiz Completed!</h2>
+        <p class="result-subtitle">You've shown great knowledge</p>
+      </div>
+
+      <div class="results-grid">
+        <div class="result-card info">
+          <div class="result-value" id="sumTotal">0</div>
+          <div class="result-label">Total Questions</div>
+          <i class="fas fa-list"></i>
+        </div>
+        <div class="result-card primary">
+          <div class="result-value" id="sumAccuracy">0%</div>
+          <div class="result-label">Accuracy</div>
+          <i class="fas fa-bullseye"></i>
+        </div>
+        <div class="result-card success">
+          <div class="result-value" id="sumCorrect">0</div>
+          <div class="result-label">Correct</div>
+          <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="result-card danger">
+          <div class="result-value" id="sumIncorrect">0</div>
+          <div class="result-label">Incorrect</div>
+          <i class="fas fa-times-circle"></i>
+        </div>
+        <div class="result-card info">
+          <div class="result-value" id="sumTime">0s</div>
+          <div class="result-label">Total Time</div>
+          <i class="fas fa-clock"></i>
+        </div>
+      </div>
+
+      <div class="performance-chart">
+        <h3>Performance Overview</h3>
+        <div class="chart-container">
+          <canvas id="performanceChart" width="400" height="200"></canvas>
+        </div>
+      </div>
+
+      <div class="summary-actions">
+        <button id="retryBtn" class="btn primary large with-icon" type="button">
+          <i class="fas fa-redo"></i>
+          Try Again
+        </button>
+        <button id="exportBtn" class="btn secondary with-icon" type="button">
+          <i class="fas fa-download"></i>
+          Export Results
+        </button>
+        <button id="newQuizBtn" class="btn accent with-icon" type="button">
+          <i class="fas fa-plus"></i>
+          New Quiz
+        </button>
+      </div>
+
+      <details class="breakdown-section">
+        <summary>
+          <i class="fas fa-chart-bar"></i>
+          Detailed Breakdown
+        </summary>
+        <div class="breakdown-content">
+          <ol id="breakdownList" class="breakdown"></ol>
+        </div>
+      </details>
+    </section>
+  </main>
+
+  <!-- Quiz Menu -->
+  <div id="quizMenu" class="quiz-menu hidden">
+    <div class="menu-content">
+      <button id="pauseQuiz" class="menu-item">
+        <i class="fas fa-pause"></i>
+        Pause Quiz
+      </button>
+      <button id="restartQuiz" class="menu-item">
+        <i class="fas fa-undo"></i>
+        Restart Quiz
+      </button>
+      <button id="viewSummary" class="menu-item">
+        <i class="fas fa-chart-pie"></i>
+        View Summary
+      </button>
+      <button id="closeMenu" class="menu-item">
+        <i class="fas fa-times"></i>
+        Close Menu
+      </button>
+    </div>
+  </div>
+
+  <!-- Confirmation Modal -->
+  <div id="confirmationModal" class="modal hidden">
+    <div class="modal-content">
+      <h3 id="modalTitle">Confirm Action</h3>
+      <p id="modalMessage">Are you sure you want to proceed?</p>
+      <div class="modal-actions">
+        <button id="modalCancel" class="btn secondary">Cancel</button>
+        <button id="modalConfirm" class="btn danger">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <i class="fas fa-bee"></i>
+          <span>QuizzyBee</span>
+        </div>
+        <small>Built with ❤️ - Accessible, Responsive, and Amazing</small>
+        <div class="footer-links">
+          <a href="#" class="footer-link">Privacy</a>
+          <a href="#" class="footer-link">Terms</a>
+          <a href="#" class="footer-link">Feedback</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Audio Elements -->
+  <audio id="sndCorrect" preload="auto">
+    <source src="data:audio/mp3;base64,//uQZAAAAAAAAAAAAAAAAAAAA..." type="audio/mp3">
+  </audio>
+  <audio id="sndIncorrect" preload="auto">
+    <source src="data:audio/mp3;base64,//uQZAAAAAAAAAAAAAAAAAAAA..." type="audio/mp3">
+  </audio>
+  <audio id="sndComplete" preload="auto">
+    <source src="data:audio/mp3;base64,//uQZAAAAAAAAAAAAAAAAAAAA..." type="audio/mp3">
+  </audio>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="./app.js" defer></script>
+</body>
+</html>

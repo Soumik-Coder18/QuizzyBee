@@ -1,0 +1,92 @@
+[
+  {
+    "id": "q1",
+    "question": "What is the capital of France?",
+    "choices": ["Paris", "London", "Rome", "Berlin"],
+    "correct": "Paris",
+    "category": "Geography",
+    "difficulty": "easy",
+    "timeLimit": 30
+  },
+  {
+    "id": "q2",
+    "question": "2 + 2 equals?",
+    "choices": ["3", "4", "5", "22"],
+    "correct": "4",
+    "category": "Mathematics",
+    "difficulty": "easy",
+    "timeLimit": 30
+  },
+  {
+    "id": "q3",
+    "question": "Which language runs in a web browser?",
+    "choices": ["Java", "C", "Python", "JavaScript"],
+    "correct": "JavaScript",
+    "category": "Technology",
+    "difficulty": "easy",
+    "timeLimit": 30
+  },
+  {
+    "id": "q4",
+    "question": "Which planet is known as the Red Planet?",
+    "choices": ["Mars", "Venus", "Jupiter", "Saturn"],
+    "correct": "Mars",
+    "category": "Astronomy",
+    "difficulty": "easy",
+    "timeLimit": 30
+  },
+  {
+    "id": "q5",
+    "question": "What is the largest mammal in the world?",
+    "choices": ["Elephant", "Blue Whale", "Giraffe", "Polar Bear"],
+    "correct": "Blue Whale",
+    "category": "Biology",
+    "difficulty": "medium",
+    "timeLimit": 30
+  },
+  {
+    "id": "q6",
+    "question": "In which year did World War II end?",
+    "choices": ["1944", "1945", "1946", "1947"],
+    "correct": "1945",
+    "category": "History",
+    "difficulty": "medium",
+    "timeLimit": 30
+  },
+  {
+    "id": "q7",
+    "question": "What is the chemical symbol for gold?",
+    "choices": ["Go", "Gd", "Au", "Ag"],
+    "correct": "Au",
+    "category": "Chemistry",
+    "difficulty": "medium",
+    "timeLimit": 30
+  },
+  {
+    "id": "q8",
+    "question": "Who painted the Mona Lisa?",
+    "choices": ["Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Michelangelo"],
+    "correct": "Leonardo da Vinci",
+    "category": "Art",
+    "difficulty": "medium",
+    "timeLimit": 30
+  },
+  {
+    "id": "q9",
+    "question": "What is the speed of light in vacuum?",
+    "choices": ["299,792,458 m/s", "300,000,000 m/s", "299,792 km/s", "186,282 mi/s"],
+    "correct": "299,792,458 m/s",
+    "category": "Physics",
+    "difficulty": "hard",
+    "timeLimit": 45
+  },
+  {
+    "id": "q10",
+    "question": "Which element has the highest melting point?",
+    "choices": ["Tungsten", "Carbon", "Osmium", "Tantalum"],
+    "correct": "Carbon",
+    "category": "Chemistry",
+    "difficulty": "hard",
+    "timeLimit": 45
+  }
+]
